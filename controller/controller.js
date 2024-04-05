@@ -1,6 +1,7 @@
 const postStock = (req, res) =>{
     res.json({
-        mes: "dummy post"
+        success: true,
+        message: "data added  to stock",
     })
 }
 
