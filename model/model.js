@@ -1,5 +1,94 @@
 const mongoose = require('mongoose');
 
+const variableScheema = mongoose.Schema({
+    $1: {
+        type: {
+          type: String,
+          enum: ['value', 'indicator'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$1');
+          },
+        },
+        values: {
+          type: [Number],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$1');
+          },
+        },
+      },
+      $2: {
+        type: {
+          type: String,
+          enum: ['value'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$2');
+          },
+        },
+        values: {
+          type: [Number],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$2');
+          },
+        },
+      },
+      $3: {
+        type: {
+          type: String,
+          enum: ['value'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$3');
+          },
+        },
+        values: {
+          type: [Number],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$3');
+          },
+        },
+      },
+      $4: {
+        type: {
+          type: String,
+          enum: ['indicator'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$4');
+          },
+        },
+        study_type: {
+          type: String,
+          enum: ['cci', 'rsi'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$4');
+          },
+        },
+        parameter_name: {
+          type: String,
+          enum: ['period'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$4');
+          },
+        },
+        min_value: {
+          type: Number,
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$4');
+          },
+        },
+        max_value: {
+          type: Number,
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$4');
+          },
+        },
+        default_value: {
+          type: Number,
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$4');
+          },
+        },
+      },
+})
+
 // Criteria Sub Schema
 const criteriaSchema = mongoose.Schema({
   type: {
@@ -11,94 +100,7 @@ const criteriaSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  variable: {
-    $1: {
-      type: {
-        type: String,
-        enum: ['value', 'indicator'],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$1');
-        },
-      },
-      values: {
-        type: [Number],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$1');
-        },
-      },
-    },
-    $2: {
-      type: {
-        type: String,
-        enum: ['value'],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$2');
-        },
-      },
-      values: {
-        type: [Number],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$2');
-        },
-      },
-    },
-    $3: {
-      type: {
-        type: String,
-        enum: ['value'],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$3');
-        },
-      },
-      values: {
-        type: [Number],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$3');
-        },
-      },
-    },
-    $4: {
-      type: {
-        type: String,
-        enum: ['indicator'],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$4');
-        },
-      },
-      study_type: {
-        type: String,
-        enum: ['cci', 'rsi'],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$4');
-        },
-      },
-      parameter_name: {
-        type: String,
-        enum: ['period'],
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$4');
-        },
-      },
-      min_value: {
-        type: Number,
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$4');
-        },
-      },
-      max_value: {
-        type: Number,
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$4');
-        },
-      },
-      default_value: {
-        type: Number,
-        required: function () {
-          return this.type === 'variable' && this.text.includes('$4');
-        },
-      },
-    },
-  },
+  variable: variableScheema,
 });
 
 // Main Schema
