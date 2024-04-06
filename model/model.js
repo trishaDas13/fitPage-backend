@@ -15,6 +15,38 @@ const variableScheema = mongoose.Schema({
             return this.type === 'variable' && this.text.includes('$1');
           },
         },
+        study_type: {
+          type: String,
+          enum: ['cci', 'rsi'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$1');
+          },
+        },
+        parameter_name: {
+          type: String,
+          enum: ['period'],
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$1');
+          },
+        },
+        min_value: {
+          type: Number,
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$1');
+          },
+        },
+        max_value: {
+          type: Number,
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$1');
+          },
+        },
+        default_value: {
+          type: Number,
+          required: function () {
+            return this.type === 'variable' && this.text.includes('$1');
+          },
+        },
       },
       $2: {
         type: {
